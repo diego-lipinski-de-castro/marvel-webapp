@@ -164,6 +164,7 @@
             border-radius: 0
             color: white
             padding: 20px
+            outline: none
 
             &:first-child
                 margin-right: 10px

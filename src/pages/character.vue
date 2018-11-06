@@ -13,7 +13,7 @@
 
                 <div class="inner">
                     <h1 class="title"> {{ character.name }} </h1>
-                    <p v-if="description" class="description"> {{ character.description }} </p>
+                    <p v-if="character.description.length" class="description"> {{ character.description }} </p>
                     <span class="date"> {{ formatDate(character.modified) }} </span>
                 </div>
 
