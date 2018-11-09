@@ -21,7 +21,7 @@
 
         <div class="pagination-container" v-if="characters.length">
             <button :disabled="query.offset == 0" @click="prevPage" class="btn"> <i class="fa fa-angle-left"></i> </button>
-            <button class="btn" @click="nextPage"> <i class="fa fa-angle-right"></i> </button>
+            <button :disabled="!hasNextPage" class="btn" @click="nextPage"> <i class="fa fa-angle-right"></i> </button>
         </div>
 
     </div>
@@ -32,7 +32,7 @@
     import CharacterCard from '@/components/character-card'
 
     export default {
-        name: 'home',
+        name: 'characters-index',
         components: {
             'character-card': CharacterCard
         },
@@ -52,6 +52,9 @@
             hasNameFilter() {
                 return this.query.nameStartsWith !== null && this.query.nameStartsWith.length > 0
             },
+            hasNextPage() {
+                return this.characters.length > this.query.limit
+            }
         },
         watch: {
             'query.limit': function() {
@@ -59,7 +62,7 @@
             },
             'query.offset': function() {
                 this.getCharacters()
-            }
+            },
         },
         methods: {
             prevPage() {
@@ -96,7 +99,7 @@
 
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
     .query-container
         display: flex
@@ -108,7 +111,6 @@
             padding: 10px
             outline: 0
             font-size: 1rem
-            font-family: 'Abel', sans-serif
             border: 1px solid #F0151E
 
         .limit
@@ -117,7 +119,6 @@
             padding: 10px
             border: 1px solid #F0151E
             width: 50px
-            font-family: 'Abel', sans-serif
             font-size: 1rem
 
             @media screen and (max-width: 768px)
@@ -128,7 +129,6 @@
             background-color: #F0151E
             color: white
             width: 50px
-            font-family: 'Abel', sans-serif
             letter-spacing: 2px
             font-weight: bold
             font-size: 1rem
@@ -173,4 +173,11 @@
                 cursor: pointer
                 background-color: darken(#F0151E, 10%)
 
+            &:disabled
+                cursor: not-allowed
+                background-color: #ddd
+
+            &:hover:not(:disabled)
+                cursor: pointer
+                background-color: darken(#F0151E, 10%)
 </style>

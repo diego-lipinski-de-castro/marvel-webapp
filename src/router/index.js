@@ -3,8 +3,11 @@ import Router from 'vue-router'
 
 // import routes from './routes'
 
-import Home from './../pages/home'
-import Character from './../pages/character'
+import CharacterIndex from './../pages/characters/index'
+import CharacterShow from './../pages/characters/show'
+
+import ComicsList from './../pages/comics/index'
+import ComicsShow from './../pages/comics/show'
 
 Vue.use(Router)
 
@@ -20,12 +23,27 @@ const router = new Router({
         {
             path: '/',
             name: 'home',
-            component: Home
+            redirect: { name: 'characters' }
         },
         {
-            path: '/character/:id',
-            name: 'character',
-            component: Character
+            path: '/characters',
+            name: 'characters',
+            component: CharacterIndex
+        },
+        {
+            path: '/characters/:id',
+            name: 'characters.show',
+            component: CharacterShow
+        },
+        {
+            path: '/characters/:id/comics',
+            name: 'characters.show.comics',
+            component: ComicsList
+        },
+        {
+            path: '/characters/:id/comics/:comic_id',
+            name: 'comics.show',
+            component: ComicsShow
         }
     ]
 })

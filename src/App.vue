@@ -4,9 +4,17 @@
         <loading-overlay :loading.sync="loading"></loading-overlay>
 
         <nav class="nav">
+
+            <router-link
+                v-if="$route.name == 'characters.show.comics'" :to="{ name: 'characters.show', params: { id: $route.params.id } }"
+                class="back-btn">
+                <i class="fa fa-angle-left"></i> Voltar
+            </router-link>
+
             <h1 class="title">
                 <router-link class="link" :to="{ name: 'home' }"> Marvel </router-link>
             </h1>
+
         </nav>
 
         <transition name="fade" mode="out-in">
@@ -39,9 +47,22 @@
     @import "@/assets/styles/app.sass"
 
     .nav
+        position: relative
         padding-top: 10px
         padding-bottom: 10px
         background-color: #F0151E
+
+        .back-btn
+            position: absolute
+            top: 0
+            display: block
+            height: 100%
+            display: flex
+            justify-content: center
+            align-items: center
+            padding: 0 10px
+            color: white
+            text-decoration: none
 
         .title
             margin: 0

@@ -1,8 +1,8 @@
 <template>
 
-    <router-link :to="{ name: 'characters.show', params: { id: character.id } }" class="character-card">
-        <img class="thumb" :src="getImage(character.thumbnail.path, character.thumbnail.extension)" :alt="character.name">
-        <span class="title"> {{character.name}} </span>
+    <router-link :to="{ name: 'comics.show', params: { id: character, comic_id: comic.id } }" class="comic-card">
+        <img class="thumb" :src="getImage(comic.thumbnail.path, comic.thumbnail.extension)" :alt="comic.title">
+        <span class="title"> {{comic.title}} </span>
     </router-link>
 
 </template>
@@ -10,8 +10,8 @@
 <script>
 
     export default {
-        name: 'character-card',
-        props: ['character'],
+        name: 'comic-card',
+        props: ['character', 'comic'],
         data() {
             return {
                 imageMode: 'portrait_uncanny'
@@ -28,7 +28,7 @@
 
 <style lang="sass" >
 
-    .character-card
+    .comic-card
         outline: 2px solid #F0151E
         display: flex
         width: 300px
