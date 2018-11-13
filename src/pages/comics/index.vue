@@ -82,7 +82,7 @@
                         || this.query.dateDescriptor == 'thisMonth'
             },
             hasNextPage() {
-                return this.comics.length > this.query.limit
+                return this.comics.length >= this.query.limit
             }
         },
         watch: {
